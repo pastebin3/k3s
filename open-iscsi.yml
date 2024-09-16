@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: install open iscsi
+      action: apt pkg=open-iscsi state=present
+      tags: -nfs
+
+    - name: ensure nfs service is running (Ubuntu)
+      action: service name={{item}} state=started
+      tags:
+        - nfs
+      with_items:
+        - nfs-kernel-server
