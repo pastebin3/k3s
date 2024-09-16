@@ -3,4 +3,3 @@
 ansible.cfg
 kubeconfig
 hosts.ini
-.gitignore
