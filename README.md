@@ -1,5 +1,7 @@
 # Automated build of HA k3s Cluster with `kube-vip` and MetalLB
 
+# Automated build of HA k3s Cluster with `kube-vip` and MetalLB
+
 ![Fully Automated K3S etcd High Availability Install](https://img.youtube.com/vi/CbkEWcUZ7zM/0.jpg)
 
 This playbook will build an HA Kubernetes cluster with `k3s`, `kube-vip` and MetalLB via `ansible`.
@@ -22,9 +24,9 @@ Build a Kubernetes cluster using Ansible with k3s. The goal is easily install a 
 
 on processor architecture:
 
-- [X] x64
-- [X] arm64
-- [X] armhf
+- [x] x64
+- [x] arm64
+- [x] armhf
 
 ## ✅ System requirements
 
@@ -89,7 +91,7 @@ After deployment control plane will be accessible via virtual ip-address which i
 ansible-playbook reset.yml -i inventory/my-cluster/hosts.ini
 ```
 
->You should also reboot these nodes due to the VIP not being destroyed
+> You should also reboot these nodes due to the VIP not being destroyed
 
 ## ⚙️ Kube Config
 
@@ -98,19 +100,25 @@ To copy your `kube config` locally so that you can access your **Kubernetes** cl
 ```bash
 scp debian@master_ip:/etc/rancher/k3s/k3s.yaml ~/.kube/config
 ```
+
 If you get file Permission denied, go into the node and temporarly run:
+
 ```bash
 sudo chmod 777 /etc/rancher/k3s/k3s.yaml
 ```
+
 Then copy with the scp command and reset the permissions back to:
+
 ```bash
 sudo chmod 600 /etc/rancher/k3s/k3s.yaml
 ```
 
 You'll then want to modify the config to point to master IP by running:
+
 ```bash
 sudo nano ~/.kube/config
 ```
+
 Then change `server: https://127.0.0.1:6443` to match your master IP: `server: https://192.168.1.222:6443`
 
 ### 🔨 Testing your cluster
@@ -130,7 +138,7 @@ You can find more information about it [here](molecule/README.md).
 
 ### Pre-commit Hooks
 
-This repo uses `pre-commit` and `pre-commit-hooks` to lint and fix common style and syntax errors.  Be sure to install python packages and then run `pre-commit install`.  For more information, see [pre-commit](https://pre-commit.com/)
+This repo uses `pre-commit` and `pre-commit-hooks` to lint and fix common style and syntax errors. Be sure to install python packages and then run `pre-commit install`. For more information, see [pre-commit](https://pre-commit.com/)
 
 ## 🌌 Ansible Galaxy
 
